@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-void buildHeap(int a[],int n)
+void buildHeap(int a[],int n)//O(nlogn)
 {
     for(int i=1;i<n;i++)
     {
@@ -12,7 +12,29 @@ void buildHeap(int a[],int n)
         }
     }
 }
-
+void heapify(int a[],int n)//O(n)
+{
+    int j=n/2-1;
+    while(j>=0){
+        int i=j;
+        while(i<n/2)
+        {
+            int lci=2*i+1;
+            int rci=2*i+2;
+            if(lci<n && rci<n) // when both left and right child are present
+            {
+                if(a[lci]>a[i] || a[rci]>a[i]){
+                    if(a[lci]>a[rci]){swap(a[lci],a[i]);i=lci;}
+                    else {swap(a[rci],a[i]);i=rci;}
+                }
+            }
+            else if(lci<j&&a[lci]>a[i]){swap(a[lci],a[i]);i=lci;}
+            else if(rci<j&&a[lci]>a[i]){swap(a[rci],a[i]);i=rci;}
+            if(i!=lci && i!=rci)i=n;
+        }
+        j--;
+    }
+}
 void HeapSort(int a[],int n){
     int j=n-1;
     while(j>0)
@@ -30,14 +52,8 @@ void HeapSort(int a[],int n){
                     else {swap(a[rci],a[i]);i=rci;}
                 }
             }
-            else if(lci<j)
-            {
-                if(a[lci]>a[i]){swap(a[lci],a[i]);i=lci;}
-            }
-            else if(rci<j)
-            {
-                if(a[lci]>a[i]){swap(a[rci],a[i]);i=rci;}
-            }
+            else if(lci<j&&a[lci]>a[i]){swap(a[lci],a[i]);i=lci;}
+            else if(rci<j&&a[lci]>a[i]){swap(a[rci],a[i]);i=rci;}
             if(i!=lci && i!=rci)i=j;
         }j--;
     }
@@ -47,7 +63,7 @@ int main()
     int n;cin>>n;
     int a[n];
     for(int i=0;i<n;i++)cin>>a[i];
-    buildHeap(a,n);
+    heapify(a,n);
     HeapSort(a,n);
     cout<<"Sorted Array :\t";
     for(int i=0;i<n;i++)cout<<a[i]<<" ";
