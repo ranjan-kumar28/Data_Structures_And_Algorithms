@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1573274226 source:c:\users\megham garg\desktop\dsa\minimax\main.cpp
+	<iostream>
+	<limits.h>
+

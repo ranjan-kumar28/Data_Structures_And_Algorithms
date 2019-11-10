@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1566814273 source:c:\users\megham garg\desktop\dsa\power_dac\main.c
+	<stdio.h>
+	<stdlib.h>
+
