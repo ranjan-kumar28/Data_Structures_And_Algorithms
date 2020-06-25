@@ -1,13 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX_VERT 100
+
 void dfs(map<char, vector<char>> adList, map<char, bool> &ver, char node){
-    if(!ver[node]) {cout << node << " "; ver[node] = true;}
-    if(adList.find(node) == adList.end()) return;
+    cout << node << " \n";
+    ver[node] = true;
     for(auto it = adList[node].begin(); it!=adList[node].end(); it++){
-        dfs(adList, ver, *it);
+        if(!ver[*it]) dfs(adList, ver, *it);
     }
 }
+
 int main(){
     map<char, vector<char>> adList; // adjacency list for graph
     map<char, bool> ver;            // vertices present in graph and their visited status
