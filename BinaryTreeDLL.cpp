@@ -1,3 +1,5 @@
+//Below functions implementation are of Binary Tree
+
 void inorder(Node* root, vector<int> &v){
     if(root->left) inorder(root->left, v);
     v.push_back(root->data);
